@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Emotion Detection from Text using NLP & Deep Learning
 
 ## Project Overview
@@ -254,3 +255,6 @@ Email: checkmate1sahil@gmail.com
 ## License
 
 This project is for educational and portfolio purposes.
+=======
+# Emotion-Detection-NLP-DeepLearning
+>>>>>>> 9439b99016331bd4cd777db0fa7af07819077d49
