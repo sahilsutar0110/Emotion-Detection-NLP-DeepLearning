@@ -1,66 +1,48 @@
-<<<<<<< HEAD
-# Emotion Detection from Text using NLP & Deep Learning
+# Emotion Detection Using NLP and Deep Learning
 
 ## Project Overview
 
-This project is an NLP-based Emotion Detection System that classifies user text into one of six emotions:
+This project is an NLP-based Emotion Detection System that classifies text into six emotions:
 
-- Anger 😡
-- Fear 😨
-- Joy 😊
-- Love ❤️
-- Sadness 😢
-- Surprise 😲
+* Anger
+* Fear
+* Joy
+* Love
+* Sadness
+* Surprise
 
-The model was trained using Deep Learning techniques and deployed through a Streamlit web application for real-time emotion prediction.
-
----
-
-## Features
-
-✅ Text Preprocessing
-
-✅ Tokenization & Padding
-
-✅ Emotion Classification
-
-✅ Real-time Prediction
-
-✅ Model Performance Visualization
-
-✅ Streamlit Web Application
-
----
-
-## Tech Stack
-
-- Python
-- TensorFlow / Keras
-- NLP
-- Pandas
-- NumPy
-- Scikit-Learn
-- Matplotlib
-- Streamlit
+The system uses Deep Learning models including Dense Neural Network, LSTM, and GRU for multi-class emotion classification. A Streamlit web application is provided for real-time emotion prediction.
 
 ---
 
 ## Dataset
 
-Dataset used:
+**Dataset:** Emotion Dataset for NLP
 
-Emotion Dataset from Kaggle
+The dataset contains text samples labeled with six emotions.
 
-Classes:
+### Dataset Split
 
-| Label | Emotion |
-|---------|---------|
-| 0 | Anger |
-| 1 | Fear |
-| 2 | Joy |
-| 3 | Love |
-| 4 | Sadness |
-| 5 | Surprise |
+| Dataset    | Samples |
+| ---------- | ------: |
+| Train      |  16,000 |
+| Validation |   2,000 |
+| Test       |   2,000 |
+
+**Total Samples:** 20,000
+
+---
+
+## Technologies Used
+
+* Python
+* Pandas
+* NumPy
+* TensorFlow / Keras
+* Scikit-Learn
+* Matplotlib
+* Streamlit
+* Git & GitHub
 
 ---
 
@@ -75,19 +57,27 @@ Emotion_Detection_Project/
 │   └── val.txt
 │
 ├── models/
-│   └── emotion_model.keras
+│   ├── emotion_model.keras
+│   ├── lstm_model.keras
+│   └── gru_model.keras
 │
 ├── graphs/
-│   ├── accuracy.png
-│   └── loss.png
+│   ├── Figure_1.png
+│   ├── Figure_2.png
+│   └── model_comparison.png
+│
+├── notebooks/
+│   └── emotion_detection.ipynb
 │
 ├── src/
 │   ├── preprocessing.py
-│   ├── lstm_model.py
 │   ├── train.py
 │   ├── predict.py
 │   ├── app.py
-│   └── visualize.py
+│   ├── lstm_model.py
+│   ├── gru_model.py
+│   ├── visualize.py
+│   └── compare_models.py
 │
 ├── requirements.txt
 └── README.md
@@ -97,85 +87,130 @@ Emotion_Detection_Project/
 
 ## Data Preprocessing
 
-The following preprocessing steps were performed:
+The following preprocessing steps were applied:
 
-- Convert text to lowercase
-- Remove special characters
-- Label Encoding
-- Tokenization
-- Sequence Padding
+* Text cleaning
+* Lowercasing
+* Removing special characters
+* Tokenization
+* Sequence padding
+* Label encoding
+
+**Vocabulary Size:** 15,213 words
+
+**Maximum Sequence Length:** 100
 
 ---
 
-## Model Architecture
+## Models Implemented
 
-```text
-Input Layer
-     ↓
-Embedding Layer
-     ↓
-GlobalAveragePooling1D
-     ↓
-Dense (128, ReLU)
-     ↓
-Dropout (0.3)
-     ↓
-Dense (64, ReLU)
-     ↓
-Dropout (0.3)
-     ↓
-Dense (6, Softmax)
-```
+### 1. Dense Neural Network
+
+* Embedding Layer
+* GlobalAveragePooling1D
+* Dense Layers
+* Dropout
+* Softmax Output Layer
+
+### 2. LSTM Model
+
+* Embedding Layer
+* LSTM Layers
+* Dense Layers
+* Dropout
+
+### 3. GRU Model
+
+* Embedding Layer
+* GRU Layers
+* Dense Layers
+* Dropout
 
 ---
 
 ## Model Performance
 
-| Metric | Value |
-|----------|----------|
-| Training Accuracy | 90.51% |
-| Validation Accuracy | 86.25% |
-| Test Accuracy | 86.65% |
+| Model                | Test Accuracy |
+| -------------------- | ------------: |
+| Dense Neural Network |    **86.35%** |
+| LSTM                 |        29.05% |
+| GRU                  |        34.75% |
+
+### Best Model
+
+Dense Neural Network achieved the highest accuracy and was selected for deployment.
+
+### Model Comparison Graph
+
+![Model Comparison](graphs/model_comparison.png)
 
 ---
 
-## Training Graphs
+## Training Results
 
+### Accuracy and Loss Curves
 
-### Accuracy Curve
+![Training Accuracy & Loss](graphs/Figure_1.png)
 
-![Accuracy Graph](graphs/Figure_1.png)
-
-### Loss Curve
-
-![Loss Graph](graphs/Figure_1.png)
-
+![Validation Accuracy & Loss](graphs/Figure_2.png)
 
 ---
 
-## Running the Project
+## Sample Predictions
 
-### 1. Clone Repository
+| Input Text                           | Predicted Emotion |
+| ------------------------------------ | ----------------- |
+| I am very happy today                | Joy               |
+| I am scared about tomorrow interview | Fear              |
+| I feel lonely and depressed          | Sadness           |
+| I am extremely excited               | Surprise          |
+
+---
+
+## Streamlit Web Application
+
+Run the application:
+
+```bash
+streamlit run src/app.py
+```
+
+### Features
+
+* Real-time emotion prediction
+* Interactive user interface
+* Deep Learning-powered classification
+* Fast and lightweight deployment
+
+---
+
+## Installation
+
+### Clone the Repository
 
 ```bash
 git clone https://github.com/sahilsutar0110/Emotion-Detection-NLP-DeepLearning.git
 ```
 
-### 2. Create Virtual Environment
+### Navigate to the Project Folder
+
+```bash
+cd Emotion-Detection-NLP-DeepLearning
+```
+
+### Create Virtual Environment
 
 ```bash
 python -m venv venv
 ```
 
-### 3. Activate Environment
-
-Windows:
+### Activate Virtual Environment (Windows)
 
 ```bash
 venv\Scripts\activate
 ```
 
-### 4. Install Dependencies
+### Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -183,7 +218,7 @@ pip install -r requirements.txt
 
 ---
 
-## Train Model
+## Run Training
 
 ```bash
 python src/train.py
@@ -197,64 +232,37 @@ python src/train.py
 python src/predict.py
 ```
 
-Example:
-
-```text
-Enter Text: I am very happy today
-
-Predicted Emotion: joy
-```
-
----
-
-## Run Streamlit Application
-
-```bash
-streamlit run src/app.py
-```
-
----
-
-## Example Predictions
-
-| Input Text | Predicted Emotion |
-|------------|-------------------|
-| I am very happy today | Joy |
-| I miss my friend | Sadness |
-| I am scared about tomorrow | Fear |
-| I love spending time with my family | Love |
-| I am angry with this situation | Anger |
-
 ---
 
 ## Future Improvements
 
-- Bidirectional LSTM
-- GRU Implementation
-- BERT-based Emotion Classification
-- Confidence Score Visualization
-- Cloud Deployment
-- Docker Containerization
+* Transformer-based models (BERT)
+* Hyperparameter tuning
+* Cloud deployment
+* REST API integration
+* Advanced model comparison dashboard
+
+---
+
+## Results Summary
+
+* Built an end-to-end NLP pipeline
+* Implemented Dense, LSTM, and GRU architectures
+* Achieved **86.35% Test Accuracy**
+* Developed a Streamlit web application
+* Compared multiple Deep Learning models
+* Managed the project using Git and GitHub
 
 ---
 
 ## Author
 
-Sahil Sutar
-
-LinkedIn: www.linkedin.com/in/sahil-sutar-88381b318
-
-
+**Sahil Sutar**
 
 GitHub: https://github.com/sahilsutar0110
-
-Email: checkmate1sahil@gmail.com
 
 ---
 
 ## License
 
-This project is for educational and portfolio purposes.
-=======
-# Emotion-Detection-NLP-DeepLearning
->>>>>>> 9439b99016331bd4cd777db0fa7af07819077d49
+This project is available under the MIT License.
